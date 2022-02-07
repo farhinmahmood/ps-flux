@@ -1,20 +1,8 @@
-import React,{useState,useEffect} from 'react'
-import {getCourses} from '../api/courseApi';
-import CourseList from './CourseList';
+import React from 'react';
 
-function CoursePage(){
-    const [courses, setCourses] = useState([]);
-    
-
-    useEffect( () =>{
-        getCourses().then(_courses => setCourses(_courses));
-
-    },[])
-        return (
-            <>
-            <h2>Courses</h2>
-            <CourseList courses={courses} />
-            {/* <table className='table'>
+function CourseList(props){
+    return(
+         <table className='table'>
                 <thead>
                     <tr>
                         <th>Title</th>
@@ -23,7 +11,7 @@ function CoursePage(){
                     </tr>
                 </thead>
                 <tbody>
-                    {courses.map(course =>{
+                    {props.courses.map(course =>{
                         return(
                             <tr key={course.id}>
                                 <td>{course.title}</td>
@@ -33,12 +21,9 @@ function CoursePage(){
                         );
                     })}
                 </tbody>
-            </table> */}
-            </>
-        
-        )
-       
-    
-}
+            </table>
 
-export default CoursePage;
+    )
+
+}
+export default CourseList;
